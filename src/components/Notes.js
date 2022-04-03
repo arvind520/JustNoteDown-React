@@ -24,7 +24,7 @@ const Notes = (props) => {
 
   return (
     <Container className="notesContainer">
-      {myAllNotes === 0 ? (
+      {myAllNotes.length == 0 ? (
         <p className="text-warning ">
           Nothing to show! Please add your notes.{" "}
         </p>
