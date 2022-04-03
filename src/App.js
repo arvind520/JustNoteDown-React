@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import MyNavbar from "./components/MyNavbar";
+import { Container } from "react-bootstrap";
+import AddSection from "./components/AddSection";
+import Notes from "./components/Notes";
 
-function App() {
+const App = () => {
+  const [myAllNotes, setMyAllNotes] = useState([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <MyNavbar />
+      <Container className="my-3">
+        <AddSection myAllNotes={myAllNotes} setMyAllNotes={setMyAllNotes} />
+
+        <hr />
+        <h1>Your Notes</h1>
+        <hr />
+
+        <Notes myAllNotes={myAllNotes} setMyAllNotes={setMyAllNotes} />
+      </Container>
+    </>
   );
-}
+};
 
 export default App;
