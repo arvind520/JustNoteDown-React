@@ -17,14 +17,18 @@ const Notes = (props) => {
     let newArray = [...myAllNotes];
     console.log(newArray.splice(index, 1));
     // console.log(newArray);
+    localStorage.setItem("ReactNotes", JSON.stringify(newArray));
+    console.log(localStorage);
     setMyAllNotes(newArray);
   };
 
-  console.log(myAllNotes);
-
   return (
     <Container className="notesContainer">
+<<<<<<< Updated upstream
       {myAllNotes.length == 0 ? (
+=======
+      {myAllNotes.length === 0 ? (
+>>>>>>> Stashed changes
         <p className="text-warning ">
           Nothing to show! Please add your notes.{" "}
         </p>
