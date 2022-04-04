@@ -6,7 +6,15 @@ import AddSection from "./components/AddSection";
 import Notes from "./components/Notes";
 
 const App = () => {
-  const [myAllNotes, setMyAllNotes] = useState([]);
+  let notes = localStorage.getItem("ReactNotes");
+  let notesArr;
+  if (notes == null) {
+    notesArr = [];
+  } else {
+    notesArr = JSON.parse(notes);
+  }
+  const [myAllNotes, setMyAllNotes] = useState(notesArr);
+
   return (
     <>
       <MyNavbar />

@@ -25,7 +25,9 @@ const AddSection = (props) => {
 
     //!Since on click on Add there is no response so we are adding our notes to localStorage at last
     setMyAllNotes([...myAllNotes, text]);
+    localStorage.setItem("ReactNotes", JSON.stringify([...myAllNotes, text]));
     setText("");
+    console.log(localStorage);
   }
 
   return (
