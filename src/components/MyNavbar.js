@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Container,
@@ -8,7 +8,22 @@ import {
   Navbar,
 } from "react-bootstrap";
 
-const MyNavbar = () => {
+const MyNavbar = (props) => {
+  var { myAllNotes, setMyAllNotes } = props;
+  // console.log(myAllNotes);
+
+  const [searchTxt, setSearchTxt] = useState("");
+
+  function handleSearch(e) {
+    // console.log(e.target.value);
+    setSearchTxt(e.target.value);
+  }
+
+  function handleOnSubmit(e) {
+    e.preventDefault();
+    console.log(searchTxt);
+  }
+
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
@@ -19,14 +34,18 @@ const MyNavbar = () => {
               Home
             </Nav.Link>
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex" onSubmit={handleOnSubmit}>
             <FormControl
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              value={searchTxt}
+              onChange={handleSearch}
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-success" type="submit">
+              Search
+            </Button>
           </Form>
         </Navbar.Collapse>
       </Container>

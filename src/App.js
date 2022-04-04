@@ -9,7 +9,7 @@ const App = () => {
   const [myAllNotes, setMyAllNotes] = useState([]);
   return (
     <>
-      <MyNavbar />
+      <MyNavbar myAllNotes={myAllNotes} setMyAllNotes={setMyAllNotes} />
       <Container className="my-3">
         <AddSection myAllNotes={myAllNotes} setMyAllNotes={setMyAllNotes} />
 
