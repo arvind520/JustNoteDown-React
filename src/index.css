@@ -16,3 +16,8 @@ code {
   display: flex;
   flex-wrap: wrap;
 }
+
+.showAllBtn{
+  height: fit-content;
+  
+  }
