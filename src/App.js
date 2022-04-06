@@ -14,18 +14,34 @@ const App = () => {
     notesArr = JSON.parse(notes);
   }
   const [myAllNotes, setMyAllNotes] = useState(notesArr);
+  const [toggleSearch, setToggleSearch] = useState(false);
 
   return (
     <>
-      <MyNavbar />
+      <MyNavbar
+        myAllNotes={myAllNotes}
+        setMyAllNotes={setMyAllNotes}
+        toggleSearch={toggleSearch}
+        setToggleSearch={setToggleSearch}
+      />
       <Container className="my-3">
-        <AddSection myAllNotes={myAllNotes} setMyAllNotes={setMyAllNotes} />
+        <AddSection
+          myAllNotes={myAllNotes}
+          setMyAllNotes={setMyAllNotes}
+          toggleSearch={toggleSearch}
+          setToggleSearch={setToggleSearch}
+        />
 
         <hr />
         <h1>Your Notes</h1>
         <hr />
 
-        <Notes myAllNotes={myAllNotes} setMyAllNotes={setMyAllNotes} />
+        <Notes
+          myAllNotes={myAllNotes}
+          setMyAllNotes={setMyAllNotes}
+          toggleSearch={toggleSearch}
+          setToggleSearch={setToggleSearch}
+        />
       </Container>
     </>
   );

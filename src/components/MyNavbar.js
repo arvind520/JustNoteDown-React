@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Container,
@@ -8,7 +8,25 @@ import {
   Navbar,
 } from "react-bootstrap";
 
-const MyNavbar = () => {
+const MyNavbar = (props) => {
+  var { myAllNotes, setMyAllNotes, toggleSearch, setToggleSearch } = props;
+  console.log(myAllNotes);
+
+  const [searchTxt, setSearchTxt] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(searchTxt);
+    let notesToShow = [];
+    myAllNotes.forEach((element) => {
+      if (element.includes(searchTxt)) {
+        notesToShow.push(element);
+      }
+    });
+
+    setMyAllNotes(notesToShow);
+    setSearchTxt("");
+    setToggleSearch(true);
+  };
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
@@ -25,8 +43,16 @@ const MyNavbar = () => {
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              value={searchTxt}
+              onChange={(e) => setSearchTxt(e.target.value)}
             />
-            <Button variant="outline-success">Search</Button>
+            <Button
+              type="submit"
+              onClick={handleSubmit}
+              variant="outline-success"
+            >
+              Search
+            </Button>
           </Form>
         </Navbar.Collapse>
       </Container>
