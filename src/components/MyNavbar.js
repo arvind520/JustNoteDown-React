@@ -9,20 +9,25 @@ import {
 } from "react-bootstrap";
 
 const MyNavbar = (props) => {
-  var { myAllNotes, setMyAllNotes } = props;
-  // console.log(myAllNotes);
+
+  var { myAllNotes, setMyAllNotes, toggleSearch, setToggleSearch } = props;
+  console.log(myAllNotes);
 
   const [searchTxt, setSearchTxt] = useState("");
-
-  function handleSearch(e) {
-    // console.log(e.target.value);
-    setSearchTxt(e.target.value);
-  }
-
-  function handleOnSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(searchTxt);
-  }
+    let notesToShow = [];
+    myAllNotes.forEach((element) => {
+      if (element.includes(searchTxt)) {
+        notesToShow.push(element);
+      }
+    });
+
+    setMyAllNotes(notesToShow);
+    setSearchTxt("");
+    setToggleSearch(true);
+  };
 
   return (
     <Navbar bg="dark" variant="dark">
@@ -41,9 +46,15 @@ const MyNavbar = (props) => {
               className="me-2"
               aria-label="Search"
               value={searchTxt}
-              onChange={handleSearch}
+
+              onChange={(e) => setSearchTxt(e.target.value)}
             />
-            <Button variant="outline-success" type="submit">
+            <Button
+              type="submit"
+              onClick={handleSubmit}
+              variant="outline-success"
+            >
+
               Search
             </Button>
           </Form>
