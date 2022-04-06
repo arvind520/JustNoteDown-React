@@ -24,6 +24,7 @@ const App = () => {
         toggleSearch={toggleSearch}
         setToggleSearch={setToggleSearch}
       />
+
       <Container className="my-3">
         <AddSection
           myAllNotes={myAllNotes}
