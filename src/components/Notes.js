@@ -14,12 +14,28 @@ const Notes = (props) => {
 
   const handleDelete = (index) => {
     // console.log(index);
-    let newArray = [...myAllNotes];
-    console.log(newArray.splice(index, 1));
-    // console.log(newArray);
-    localStorage.setItem("ReactNotes", JSON.stringify(newArray));
-    console.log(localStorage);
-    setMyAllNotes(newArray);
+    console.log(myAllNotes[index]);
+    let elementToRemove = myAllNotes[index];
+
+    let elementsToShow = [];
+
+    let notes = localStorage.getItem("ReactNotes");
+    if (notes == null) {
+      notes = [];
+    } else {
+      notes = JSON.parse(notes);
+    }
+    notes.forEach((element) => {
+      if (element != elementToRemove) {
+        elementsToShow.push(element);
+      }
+    });
+
+    if (toggleSearch) {
+      setToggleSearch(!toggleSearch);
+    }
+    localStorage.setItem("ReactNotes", JSON.stringify(elementsToShow));
+    setMyAllNotes(elementsToShow);
   };
 
   function handleShowAll() {
