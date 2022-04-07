@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 
 const MyNavbar = (props) => {
+
   var { myAllNotes, setMyAllNotes, toggleSearch, setToggleSearch } = props;
   console.log(myAllNotes);
 
@@ -27,6 +28,7 @@ const MyNavbar = (props) => {
     setSearchTxt("");
     setToggleSearch(true);
   };
+
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
@@ -37,13 +39,14 @@ const MyNavbar = (props) => {
               Home
             </Nav.Link>
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex" onSubmit={handleOnSubmit}>
             <FormControl
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
               value={searchTxt}
+
               onChange={(e) => setSearchTxt(e.target.value)}
             />
             <Button
@@ -51,6 +54,7 @@ const MyNavbar = (props) => {
               onClick={handleSubmit}
               variant="outline-success"
             >
+
               Search
             </Button>
           </Form>
