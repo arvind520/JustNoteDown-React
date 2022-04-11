@@ -25,6 +25,7 @@ const Notes = (props) => {
     } else {
       notes = JSON.parse(notes);
     }
+    //pushing all the elements except that element to remove
     notes.forEach((element) => {
       if (element != elementToRemove) {
         elementsToShow.push(element);

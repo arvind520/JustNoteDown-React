@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 
 const AddSection = (props) => {
-  var { myAllNotes, setMyAllNotes } = props;
+  var { toggleSearch, setToggleSearch, myAllNotes, setMyAllNotes } = props;
+
   // console.log(myAllNotes);
   const [text, setText] = useState("");
 
@@ -24,10 +25,26 @@ const AddSection = (props) => {
     // localStorage.setItem("ReactNotes", JSON.stringify(notesArr));
 
     //!Since on click on Add there is no response so we are adding our notes to localStorage at last
-    setMyAllNotes([...myAllNotes, text]);
-    localStorage.setItem("ReactNotes", JSON.stringify([...myAllNotes, text]));
+    // setMyAllNotes([...myAllNotes, text]);
+    // localStorage.setItem("ReactNotes", JSON.stringify([...myAllNotes, text]));
+    // setText("");
+    // console.log(localStorage);
+
+    let notes = localStorage.getItem("ReactNotes");
+    if (notes == null) {
+      notes = [];
+    } else {
+      notes = JSON.parse(notes);
+    }
+
+    let elementsToShow = [...notes, text];
+
+    if (toggleSearch) {
+      setToggleSearch(!toggleSearch);
+    }
+    localStorage.setItem("ReactNotes", JSON.stringify(elementsToShow));
+    setMyAllNotes(elementsToShow);
     setText("");
-    console.log(localStorage);
   }
 
   return (
